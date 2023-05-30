@@ -8,3 +8,4 @@ dist/
 _old/
 __pycache__/
 *.ipynb
+*.spec

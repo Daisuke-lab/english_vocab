@@ -1,2 +1,10 @@
 google-service-account.json
 venv/
+.env
+*.build
+*.dist
+build/
+dist/
+_old/
+__pycache__/
+*.ipynb

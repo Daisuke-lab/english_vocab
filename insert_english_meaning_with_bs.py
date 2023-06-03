@@ -11,11 +11,11 @@ class EnglishMeaningInserter(Common):
         cells = row
         name = cells[0].value
         url = f"https://www.merriam-webster.com/dictionary/{name}"
-        print(url)
+        url = url.replace(" ", "%20")
         res = requests.get(url)
         soup = bs4(res.text, 'html.parser')
         row_definitions = soup.find_all("a", class_="fb share-link")
-        row_examples = soup.find_all("span", class_="d-block t has-aq")
+        row_examples = soup.find_all("span", class_="t has-aq")
         examples = []
         definitions = []
         for index, row_example in enumerate(row_examples):

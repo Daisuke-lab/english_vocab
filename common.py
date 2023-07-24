@@ -10,7 +10,7 @@ import traceback
 import os
 from dotenv import load_dotenv
 from time import sleep 
-
+import sys
 
 class Common():
 
@@ -18,7 +18,8 @@ class Common():
         if url is not None:
             self.url = url
         else:
-            load_dotenv(os.path.dirname(os.path.abspath(__file__)))
+            current_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+            load_dotenv(os.path.join(current_dir, ".env"))
             self.url = os.environ.get("SPREADSHEET_URL")
             print(self.url)
         self.connect_to_spreadsheet()
@@ -67,7 +68,6 @@ class Common():
 
     def has_word(self, row):
         cells = row
-        print("has word", cells[0].value)
         return cells[0].value != ""
 
     def ws_already_checked(self, ws):

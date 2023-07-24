@@ -1,4 +1,3 @@
-from site import check_enableusersite
 import requests
 import gspread
 import json

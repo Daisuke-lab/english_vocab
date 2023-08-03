@@ -37,9 +37,9 @@ class Common():
         self.ws =self.workbook.worksheets()[-1]
 
 
-    def already_checked(self, row):
+    def already_checked_word(self, row):
         cells = row
-        return cells[3].value != ""
+        return cells[1].value != ""
     
     def get_row(self, ws, count):
         columns_num = 5
@@ -69,8 +69,9 @@ class Common():
     def has_word(self, row):
         cells = row
         return cells[0].value != ""
+    
 
-    def ws_already_checked(self, ws):
+    def already_checked_page(self, ws):
         value = ws.acell('A3').value
         return value == "TRUE"
     
@@ -81,19 +82,18 @@ class Common():
         try:
             for ws in self.workbook.worksheets():
                 count = -1
-                checked_every_word = self.ws_already_checked(ws)
+                checked_every_word = self.already_checked_page(ws)
                 while checked_every_word == False:
                     count += 1
                     sleep(1)
                     row = self.get_row(ws, count)
-                    if self.already_checked(row) == False:
-                        if self.has_word(row):
+                    if self.has_word(row):
+                        if self.already_checked_word(row) is False:
                             info = self.search_meaning(row)
-                            if info["definitions"] != []:
-                                self.insert_info(ws, row, info)
-                        else:
-                            print("you have checked every word!!")
-                            checked_every_word = True
+                            self.insert_info(ws, row, info)
+                    else:
+                        print("you have checked every word!!")
+                        checked_every_word = True
         except:
             print(traceback.format_exc())
         finally:

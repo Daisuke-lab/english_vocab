@@ -5,7 +5,7 @@
 this python file detects your new vocabulary in google spread sheet, and scrape the meanings from cambridge dictionary and write examples with the word and reference for you.
 
 
-## insert_english_meaning_ver2.py
+## run insert_engligh_meaning_with_X.py
 
 1. write your new words in "word" column.
 
@@ -17,10 +17,10 @@ this python file detects your new vocabulary in google spread sheet, and scrape 
     editor role is required.
 
 
-3. provide your google spread sheet url in insert_english_meaning_ver2.py
+3. provide your google spread sheet url in insert_engligh_meaning_with_X.py
 
 
-4. run insert_english_meaning_ver2.py
+4. run insert_engligh_meaning_with_X.py
 
 
 ## pronounce_speaker.py

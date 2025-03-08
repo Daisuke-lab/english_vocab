@@ -1,19 +1,28 @@
 function myFunction() {
   const spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
   const sheets = spreadSheet.getSheets()
-  const range = getRow(sheets[0].getSheetId, 1)
-  Logger(range.getCell(1, 1).getValue())
+  const range = getRow(sheets[0].getSheetId(), 1)
+  vocab = new Vocabulary(range)
+  Logger.log(vocab.getWord())
+  Logger.log(range.getCell(1, 2).getValue())
+  vocab = new Vocabulary(range)
+  if (vocab.hasWord()) {
+    fetchDefinition(vocab.getWord())
+  }
   // for (var i = 0; i < sheets.length; i++) {
-  //   sheets[0].getSheetId
   // }
 
 }
 
+
 function getRow(sheetId, count) {
+  Logger.log(sheetId)
+  Logger.log(count)
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetById(sheetId)
   firstRowIndex = 8
   currentIndex = firstRowIndex + count
-  return sheet.getRange(currentIndex, 0, currentIndex, sheet.getColumnWidth())
+  Logger.log(sheet.getMaxColumns())
+  return sheet.getRange(currentIndex, 1, currentIndex, sheet.getMaxColumns())
 }
 
 
@@ -24,7 +33,9 @@ function fetchDefinition(word) {
 
     // Fetch data from API
     const headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
-    const  response = UrlFetchApp.fetch(url, headers);
+    const response = UrlFetchApp.fetch(url, headers);
+    Logger.log(response.getContentText())
     const data = JSON.parse(response.getContentText());
+    Logger.log(data)
     return data
 }

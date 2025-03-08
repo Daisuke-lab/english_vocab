@@ -4,8 +4,8 @@ class Vocabulary {
   }
 
   hasDefinitions() {
-    var cell = row.getCell(1, 3)
-    return cells.getValue() != ""
+    var cell = this.row.getCell(1, 3)
+    return cell.getValue() != ""
   }
 
   setDefinitions(definitions) {
@@ -22,12 +22,12 @@ class Vocabulary {
   }
 
   hasWord() {
-    getWord() != ""
+    return this.getWord() != ""
   }
 
   getWord() {
-    var cell = row.getCell(1, 2)
-    return cells.getValue()
+    var cell = this.row.getCell(1, 2)
+    return cell.getValue()
   }
 
   

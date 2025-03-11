@@ -29,7 +29,7 @@ class Common():
 
     def connect_to_spreadsheet(self):
         scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-        path = r'C:\workspace\envs\english_vocab\google-service-account.json'
+        path = r'C:\envs\english_vocab\google-service-account.json'
         credentials = ServiceAccountCredentials.from_json_keyfile_name(path, scope)
         gc = gspread.authorize(credentials)
         key = self.url.split("/")[5]

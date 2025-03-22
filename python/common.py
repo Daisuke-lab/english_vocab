@@ -19,7 +19,14 @@ class Common():
             self.url = url
         else:
             current_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-            load_dotenv(os.path.join(current_dir, ".env"))
+            # Pyinstaller exe
+            if getattr(sys, 'frozen', False):
+                application_path = os.path.dirname(sys.executable)
+            # general python
+            elif __file__:
+                application_path = os.path.dirname(__file__)
+
+            load_dotenv(os.path.join(application_path, ".env"))
             self.url = os.environ.get("SPREADSHEET_URL")
             print(self.url)
         self.connect_to_spreadsheet()
@@ -96,6 +103,6 @@ class Common():
                         checked_every_word = True
         except:
             print(traceback.format_exc())
-        finally:
-            input("終了するにはEnterを押してください。")
+        # finally:
+        #     input("終了するにはEnterを押してください。")
             

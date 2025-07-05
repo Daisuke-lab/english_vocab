@@ -10,20 +10,19 @@ class GeminiManager:
         curr_dir = self.get_curr_dir()
         load_dotenv(os.path.join(curr_dir, ".env"))
         api_key = os.environ.get("GEMINI_API_KEY")
-        print("KEY:", api_key)
         #os.environ["GEMINI_API_KEY"] = api_key
-        self.client = genai.Client()
+        self.client = genai.Client(api_key=api_key)
         self.chat = self.client.chats.create(model="gemini-2.5-pro")
         self.init_chat()
 
     def get_curr_dir(self):
         # Pyinstaller exe
         if getattr(sys, 'frozen', False):
-            application_path = os.path.dirname(sys.executable)
+            curr_dir = os.path.dirname(sys.executable)
         # general python
         elif __file__:
-            application_path = os.path.dirname(__file__)
-        return application_path
+            curr_dir = os.getcwd()
+        return curr_dir
     
     def init_chat(self):
         curr_dir = self.get_curr_dir()
@@ -31,7 +30,6 @@ class GeminiManager:
         with open(path) as f:
             prompt = f.read()
         res = self.chat.send_message(prompt)
-        print(self.parse_response(res.text))
 
     def search_word(self, word):
         prompt = f"What is the meaning of {word}?"
@@ -55,4 +53,4 @@ class GeminiManager:
 
 
 if __name__ == "__main__":
-    GeminiManager()
+    print(GeminiManager().search_word("indulge"))

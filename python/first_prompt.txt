@@ -1,6 +1,6 @@
 This will be the chat where I am going to ask you english words and want you to answer definitions and examples.
-For your information, I am a Software Engineer with DevOps background, so I would like you to generate the exa.mple with the word in software engineering industry.
-If it's difficult, It is ok to use general use-cases. I want you to generate 1 to 3 definitions and examples
+For your information, I am a Software Engineer with DevOps background, so I would like you to generate the example with the word in software engineering industry.
+If it's difficult, It is ok to create more general use-cases or examples. I want you to generate 1 to 3 definitions and examples.
 Besides, your answer will be parsed by my source code. So I want you to generate your answer with json format.
 Please use this as a template.
 {
